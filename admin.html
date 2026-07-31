@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Admin - Cross Passion International</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/logo.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* ── Layout ── */
+    .admin-container {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 48px 20px;
+    }
+    .login-container {
+      max-width: 440px;
+      margin: 80px auto;
+      padding: 0 16px;
+    }
+    .hidden { display: none !important; }
+
+    /* ── Header block ── */
+    .admin-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .admin-header img {
+      max-height: 64px;
+      margin-bottom: 16px;
+      filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent-color), transparent 50%));
+    }
+    .admin-header h2 {
+      font-family: var(--heading-font);
+      font-size: 1.5rem;
+      color: var(--heading-color);
+      margin-bottom: 6px;
+    }
+    .admin-header p {
+      color: color-mix(in srgb, var(--default-color), transparent 30%);
+      font-size: 0.9rem;
+    }
+
+    /* ── Card ── */
+    .admin-card {
+      background: var(--surface-color);
+      border-radius: 16px;
+      padding: 36px 32px;
+      margin-bottom: 28px;
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 82%);
+      box-shadow: 0 4px 32px color-mix(in srgb, var(--accent-color), transparent 90%);
+    }
+    .admin-card h3 {
+      font-family: var(--heading-font);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid color-mix(in srgb, var(--accent-color), transparent 75%);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── Form fields ── */
+    .form-label {
+      color: var(--default-color);
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .input-wrapper {
+      position: relative;
+    }
+    .input-wrapper .field-icon {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: color-mix(in srgb, var(--accent-color), transparent 30%);
+      font-size: 1rem;
+      pointer-events: none;
+    }
+    .input-wrapper .form-control,
+    .input-wrapper .form-select {
+      padding-left: 40px;
+    }
+    .form-control, .form-select {
+      background: color-mix(in srgb, var(--background-color), transparent 10%);
+      border: 1.5px solid color-mix(in srgb, var(--default-color), transparent 78%);
+      border-radius: 10px;
+      color: var(--default-color);
+      padding: 11px 14px;
+      font-size: 0.93rem;
+      transition: border-color 0.25s, box-shadow 0.25s;
+    }
+    .form-control::placeholder { color: color-mix(in srgb, var(--default-color), transparent 55%); }
+    .form-control:focus, .form-select:focus {
+      background: color-mix(in srgb, var(--background-color), transparent 10%);
+      color: var(--default-color);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-color), transparent 78%);
+      outline: none;
+    }
+    textarea.form-control { resize: vertical; min-height: 100px; }
+
+    /* file input */
+    input[type="file"].form-control {
+      padding: 8px 14px;
+      cursor: pointer;
+    }
+    input[type="file"].form-control::file-selector-button {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      border: none;
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 12px;
+      transition: background 0.2s;
+    }
+    input[type="file"].form-control::file-selector-button:hover {
+      background: color-mix(in srgb, var(--accent-color), #000 18%);
+    }
+    .form-text {
+      font-size: 0.78rem;
+      color: color-mix(in srgb, var(--default-color), transparent 45%);
+      margin-top: 5px;
+    }
+
+    /* ── Buttons ── */
+    .btn-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      border: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      transition: background 0.25s, transform 0.15s, box-shadow 0.25s;
+      box-shadow: 0 4px 18px color-mix(in srgb, var(--accent-color), transparent 55%);
+    }
+    .btn-admin:hover {
+      background: color-mix(in srgb, var(--accent-color), #000 18%);
+      color: var(--contrast-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px color-mix(in srgb, var(--accent-color), transparent 40%);
+    }
+    .btn-admin:active { transform: translateY(0); }
+    .btn-admin.w-100 { justify-content: center; }
+
+    .btn-danger-admin {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: transparent;
+      color: #e05260;
+      border: 1.5px solid #e05260;
+      padding: 5px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+    .btn-danger-admin:hover {
+      background: #e05260;
+      color: white;
+    }
+
+    /* ── Tabs ── */
+    .nav-tabs {
+      border: none;
+      background: color-mix(in srgb, var(--surface-color), transparent 30%);
+      border-radius: 12px;
+      padding: 5px;
+      display: inline-flex;
+      gap: 4px;
+      margin-bottom: 28px;
+    }
+    .nav-tabs .nav-link {
+      color: color-mix(in srgb, var(--default-color), transparent 20%);
+      border: none;
+      background: transparent;
+      border-radius: 9px;
+      padding: 9px 22px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-tabs .nav-link.active {
+      background: var(--accent-color);
+      color: var(--contrast-color);
+      box-shadow: 0 2px 10px color-mix(in srgb, var(--accent-color), transparent 55%);
+    }
+    .nav-tabs .nav-link:hover:not(.active) { color: var(--accent-color); }
+
+    /* ── Content list ── */
+    .content-list {
+      max-height: 420px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+    .content-list::-webkit-scrollbar { width: 5px; }
+    .content-list::-webkit-scrollbar-track { background: transparent; }
+    .content-list::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 4px; }
+    .content-item {
+      background: var(--background-color);
+      border: 1px solid color-mix(in srgb, var(--accent-color), transparent 85%);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+    .content-item:hover { border-color: color-mix(in srgb, var(--accent-color), transparent 50%); }
+    .content-item-info h5 {
+      margin: 0 0 4px 0;
+      font-size: 0.95rem;
+      color: var(--heading-color);
+      font-family: var(--heading-font);
+    }
+    .content-item-info p {
+      margin: 0;
+      font-size: 0.8rem;
+      color: color-mix(in srgb, var(--default-color), transparent 35%);
+    }
+
+    /* ── Alerts ── */
+    .alert-admin {
+      padding: 12px 18px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .alert-success { background: color-mix(in srgb, #059652, transparent 15%); color: #fff; }
+    .alert-danger  { background: color-mix(in srgb, #df1529, transparent 15%); color: #fff; }
+    #loginError { display: none; }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center position-relative">
+    <div class="container-fluid position-relative d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="assets/img/logo.png" alt="Church Logo" class="logo-img">
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="starter-page.html">Sermons</a></li>
+          <li><a href="#portfolio">Events</a></li>
+          <li><a href="#team">Our Staff</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <i class="bi bi-moon-stars"></i>
+      </button>
+
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Login Section -->
+    <section id="login-section" class="login-section section">
+      <div class="login-container">
+        <div class="admin-card">
+          <div class="admin-header">
+            <img src="assets/img/logo.png" alt="Church Logo" class="logo-img">
+            <h2>Cross Passion International - Admin Login</h2>
+            <p>Sign in to manage church content</p>
+          </div>
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="adminEmail" class="form-label">Email</label>
+              <div class="input-wrapper">
+                <i class="bi bi-envelope field-icon"></i>
+                <input type="email" class="form-control" id="adminEmail" placeholder="admin@crosspassion.org" required>
+              </div>
+            </div>
+            <div class="mb-4">
+              <label for="adminPassword" class="form-label">Password</label>
+              <div class="input-wrapper" style="position:relative;">
+                <i class="bi bi-lock field-icon"></i>
+                <input type="password" class="form-control" id="adminPassword" placeholder="••••••••" required style="padding-right:42px;">
+                <i class="bi bi-eye-slash" id="togglePassword" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);cursor:pointer;color:color-mix(in srgb, var(--accent-color), transparent 30%);font-size:1rem;z-index:5;"></i>
+              </div>
+            </div>
+            <div id="loginError" class="alert-admin alert-danger">
+              <i class="bi bi-exclamation-circle"></i> Invalid credentials. Please try again.
+            </div>
+            <button type="submit" class="btn-admin w-100">
+              <i class="bi bi-box-arrow-in-right"></i> Sign In
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="admin-dashboard" class="admin-dashboard section hidden">
+      <div class="admin-container">
+        <div class="admin-header">
+          <img src="assets/img/logo.png" alt="Church Logo" class="logo-img">
+          <h2>Cross Passion International - Admin Dashboard</h2>
+          <p>Manage sermons and events for Cross Passion International</p>
+        </div>
+
+        <div id="adminAlert"></div>
+
+        <ul class="nav nav-tabs mb-4" id="adminTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="sermons-tab" data-bs-toggle="tab" data-bs-target="#sermons-panel" type="button" role="tab">Sermons</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="events-tab" data-bs-toggle="tab" data-bs-target="#events-panel" type="button" role="tab">Events</button>
+          </li>
+        </ul>
+
+        <div class="tab-content" id="adminTabContent">
+          
+          <!-- Sermons Panel -->
+          <div class="tab-pane fade show active" id="sermons-panel" role="tabpanel">
+            <div class="admin-card">
+              <h3><i class="bi bi-mic"></i> Upload New Sermon</h3>
+              <form id="sermonForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="sermonTitle" class="form-label">Title</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-book field-icon"></i>
+                      <input type="text" class="form-control" id="sermonTitle" placeholder="Sermon title" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="sermonSpeaker" class="form-label">Preacher</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-person field-icon"></i>
+                      <input type="text" class="form-control" id="sermonSpeaker" placeholder="Speaker name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="sermonDuration" class="form-label">Duration</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-clock field-icon"></i>
+                      <input type="text" class="form-control" id="sermonDuration" placeholder="e.g. 45 min">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="sermonType" class="form-label">Type</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-collection-play field-icon"></i>
+                      <select class="form-select" id="sermonType" required>
+                        <option value="video">Video</option>
+                        <option value="audio">Audio / Voice Message</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="sermonMedia" class="form-label">Upload Media File</label>
+                    <input type="file" class="form-control" id="sermonMedia" accept="video/*,audio/*" required>
+                    <div class="form-text"><i class="bi bi-info-circle"></i> Upload the sermon video or audio file.</div>
+                  </div>
+                  <div class="col-12">
+                    <label for="sermonThumbnail" class="form-label">Thumbnail Image <span style="font-weight:400;text-transform:none;font-size:0.78rem;opacity:0.6">(optional)</span></label>
+                    <input type="file" class="form-control" id="sermonThumbnail" accept="image/*">
+                  </div>
+                  <div class="col-12">
+                    <label for="sermonDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="sermonDescription" rows="3" placeholder="Brief description of this sermon..."></textarea>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <button type="submit" class="btn-admin">
+                    <i class="bi bi-cloud-upload"></i> Upload Sermon
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="admin-card">
+              <h3><i class="bi bi-collection"></i> Manage Sermons</h3>
+              <div id="sermonsList" class="content-list">
+                <p class="text-center">No sermons uploaded yet.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Events Panel -->
+          <div class="tab-pane fade" id="events-panel" role="tabpanel">
+            <div class="admin-card">
+              <h3><i class="bi bi-calendar-plus"></i> Upload New Event</h3>
+              <form id="eventForm">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="eventTitle" class="form-label">Event Title</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-flag field-icon"></i>
+                      <input type="text" class="form-control" id="eventTitle" placeholder="Event name" required>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="eventDate" class="form-label">Event Date</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-calendar3 field-icon"></i>
+                      <input type="date" class="form-control" id="eventDate" required>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="eventDescription" class="form-label">Description</label>
+                    <textarea class="form-control" id="eventDescription" rows="3" placeholder="Describe the event..." required></textarea>
+                  </div>
+                  <div class="col-12">
+                    <label for="eventImage" class="form-label">Event Image URL <span style="font-weight:400;text-transform:none;font-size:0.78rem;opacity:0.6">(optional)</span></label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-link-45deg field-icon"></i>
+                      <input type="url" class="form-control" id="eventImage" placeholder="https://your-image-url.com/image.jpg">
+                    </div>
+                  </div>
+                  <div class="col-md-8">
+                    <label for="eventFlyer" class="form-label">Upload Event Flyer <span style="font-weight:400;text-transform:none;font-size:0.78rem;opacity:0.6">(optional)</span></label>
+                    <input type="file" class="form-control" id="eventFlyer" accept="image/*">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="eventCategory" class="form-label">Category</label>
+                    <div class="input-wrapper">
+                      <i class="bi bi-tag field-icon"></i>
+                      <select class="form-select" id="eventCategory">
+                        <option value="Community">Community</option>
+                        <option value="Fellowship">Fellowship</option>
+                        <option value="Outreach">Outreach</option>
+                        <option value="Worship">Worship</option>
+                        <option value="Youth">Youth</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="mt-4">
+                  <button type="submit" class="btn-admin">
+                    <i class="bi bi-cloud-upload"></i> Upload Event
+                  </button>
+                </div>
+              </form>
+            </div>
+
+            <div class="admin-card">
+              <h3><i class="bi bi-calendar-check"></i> Manage Events</h3>
+              <div id="eventsList" class="content-list">
+                <p class="text-center">No events uploaded yet.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <img src="assets/img/logo.png" alt="Church Logo" class="logo-img">
+          </a>
+          <p>Cross Passion International is a welcoming community of faith dedicated to spreading God's love, serving our neighbors, and growing together in Christ. Join us for worship, fellowship, and meaningful service.</p>
+          <div class="social-links d-flex mt-4">
+            <a href=""><i class="bi bi-tiktok"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a>
+            <a href=""><i class="bi bi-instagram"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Events</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Sunday Service</a></li>
+            <li><a href="#">Monday Prayers</a></li>
+            <li><a href="#">Midweek Service</a></li>
+            <li><a href="#">Bible Study</a></li>
+            <li><a href="#">Youth Ministry</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Contact Us</h4>
+          <p>123 Faith Avenue</p>
+          <p>Graceville, CA 90210</p>
+          <p>United States</p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+1 (555) 123-4567</span></p>
+          <p><strong>Email:</strong> <span>info@crosspassion.org</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Cross Passion International</strong> <span>All Rights Reserved</span></p>
+    </div>
+  </footer>
+
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader">
+    <img src="assets/img/logo.png" alt="Cross Passion International" class="logo-img">
+  </div>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="admin.js"></script>
+  <script>
+    const togglePassword = document.getElementById('togglePassword');
+    const adminPassword = document.getElementById('adminPassword');
+    togglePassword.addEventListener('click', function() {
+      const isHidden = adminPassword.type === 'password';
+      adminPassword.type = isHidden ? 'text' : 'password';
+      this.classList.toggle('bi-eye', isHidden);
+      this.classList.toggle('bi-eye-slash', !isHidden);
+    });
+  </script>
+</body>
+</html>
